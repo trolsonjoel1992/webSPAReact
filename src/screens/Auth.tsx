@@ -125,9 +125,9 @@ export default function Auth() {
           // Guardar en Redux store
           loginToStore({
             token: response.token,
-            username: userPayload.username,
-            idUser: userPayload.idUser,
-            rol: userPayload.rol,
+            username: userPayload.sub, // El email está en 'sub'
+            idUser: userPayload.userId, // El ID está en 'userId' (no 'idUser')
+            rol: userPayload.rol || 'CUSTOMER', // Usar un rol por defecto si no viene
           });
         }
         navigate('/');
@@ -149,9 +149,9 @@ export default function Auth() {
         if (userPayload) {
           loginToStore({
             token: response.token,
-            username: userPayload.username,
-            idUser: userPayload.idUser,
-            rol: userPayload.rol,
+            username: userPayload.sub, // El email está en 'sub'
+            idUser: userPayload.userId, // El ID está en 'userId'
+            rol: userPayload.rol || 'CUSTOMER', // Usar un rol por defecto si no viene
           });
         }
       }
@@ -448,14 +448,14 @@ export default function Auth() {
           </CardContent>
         </Card>
 
-        <Box sx={{ mt: 2, textAlign: 'center' }}>
+        {/* <Box sx={{ mt: 2, textAlign: 'center' }}>
           <Typography variant='body2' color='text.secondary'>
             ¿Olvidaste tu contraseña?{' '}
             <Button variant='text' size='small'>
               Recuperar
             </Button>
           </Typography>
-        </Box>
+        </Box> */}
       </Box>
     </Container>
   );

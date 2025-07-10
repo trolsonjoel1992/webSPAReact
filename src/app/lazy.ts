@@ -10,3 +10,5 @@ export const Auth = lazy(() => import('@/screens/Auth'));
 export const CreatePublication = lazy(
   () => import('@/screens/CreatePublication')
 );
+export const EditPublication = lazy(() => import('@/screens/EditPublication'));
+export const MyPublications = lazy(() => import('@/screens/MyPublications'));

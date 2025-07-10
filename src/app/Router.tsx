@@ -4,6 +4,8 @@ import {
   MainLayout,
   NotFound,
   CreatePublication,
+  EditPublication,
+  MyPublications,
 } from '@/app/lazy';
 import AuthGuard from '@utils/AuthGuard';
 import PrivateGuard from '@utils/PrivateGuard';
@@ -16,6 +18,8 @@ export default function Router() {
         <Route element={<MainLayout />}>
           <Route path='/' element={<Home />} />
           <Route path='/sell' element={<CreatePublication />} />
+          <Route path='/edit-publication/:id' element={<EditPublication />} />
+          <Route path='/my-publications' element={<MyPublications />} />
         </Route>
       </Route>
 

@@ -21,6 +21,7 @@ import {
   DarkMode,
   LightMode,
   Add,
+  List,
 } from '@mui/icons-material';
 import { Outlet, useNavigate } from 'react-router';
 import { useAuthStore } from '@/shared/hooks/useAuthStore';
@@ -65,6 +66,11 @@ export default function MainLayout() {
   const handleSellClick = () => {
     handleProfileMenuClose();
     navigate('/sell');
+  };
+
+  const handleMyPublications = () => {
+    handleProfileMenuClose();
+    navigate('/my-publications');
   };
 
   return (
@@ -183,6 +189,16 @@ export default function MainLayout() {
                       </ListItemIcon>
                       <ListItemText primary='Vender' />
                     </MenuItem>
+
+                    {/* Mis publicaciones */}
+                    <MenuItem onClick={handleMyPublications}>
+                      <ListItemIcon>
+                        <List />
+                      </ListItemIcon>
+                      <ListItemText primary='Mis publicaciones' />
+                    </MenuItem>
+
+                    {/* <Divider /> */}
 
                     {/* Toggle de tema */}
                     <MenuItem onClick={handleThemeToggle}>
