@@ -5,7 +5,16 @@ export const theme = createTheme({
   // cssVariables: {
   //   colorSchemeSelector: 'class',
   // },
+
   colorSchemes: {
     dark: true,
+  },
+  palette: {
+    primary: {
+      main: '#7124CB',
+    },
+    secondary: {
+      main: '#A230C7',
+    },
   },
 });
