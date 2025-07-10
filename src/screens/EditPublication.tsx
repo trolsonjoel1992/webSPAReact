@@ -22,7 +22,10 @@ import {
 import { ArrowBack, AttachMoneyOutlined } from '@mui/icons-material';
 import { useNavigate, useParams } from 'react-router';
 import { EditPublicationRequest } from '@features/publications/types';
-import { useEditPublication, useGetPublicationById } from '@features/publications/hooks';
+import {
+  useEditPublication,
+  useGetPublicationById,
+} from '@features/publications/hooks';
 import { useToast } from '@/shared/hooks/useToast';
 
 const categories = [
@@ -45,10 +48,14 @@ export default function EditPublication() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const toast = useToast();
-  
-  const { data: publication, isLoading, error } = useGetPublicationById(id || '');
+
+  const {
+    data: publication,
+    isLoading,
+    error,
+  } = useGetPublicationById(id || '');
   const editMutation = useEditPublication();
-  
+
   const [formData, setFormData] = useState<EditPublicationRequest>({
     id: '',
     title: '',
@@ -102,7 +109,9 @@ export default function EditPublication() {
         navigate('/my-publications');
       }, 2000);
     } catch (error) {
-      toast.error('Error al actualizar la publicación. Inténtalo de nuevo más tarde.');
+      toast.error(
+        'Error al actualizar la publicación. Inténtalo de nuevo más tarde.'
+      );
       console.error('Error al actualizar la publicación:', error);
     }
   };
@@ -126,7 +135,7 @@ export default function EditPublication() {
         >
           Volver a mis publicaciones
         </Button>
-        
+
         <Card>
           <CardContent sx={{ p: 4 }}>
             <Skeleton variant='text' height={60} sx={{ mb: 3 }} />
@@ -159,11 +168,11 @@ export default function EditPublication() {
         >
           Volver a mis publicaciones
         </Button>
-        
+
         <Alert severity='error' sx={{ mb: 3 }}>
           No se pudo cargar la publicación. Verifica que el enlace sea correcto.
         </Alert>
-        
+
         <Button
           variant='contained'
           onClick={() => navigate('/my-publications')}
@@ -334,7 +343,10 @@ export default function EditPublication() {
                     <Checkbox
                       checked={formData.isPremium}
                       onChange={(e) =>
-                        setFormData({ ...formData, isPremium: e.target.checked })
+                        setFormData({
+                          ...formData,
+                          isPremium: e.target.checked,
+                        })
                       }
                     />
                   }
@@ -360,7 +372,9 @@ export default function EditPublication() {
                   disabled={!isFormValid || editMutation.isPending}
                   sx={{ textTransform: 'none' }}
                 >
-                  {editMutation.isPending ? 'Actualizando...' : 'Actualizar Publicación'}
+                  {editMutation.isPending
+                    ? 'Actualizando...'
+                    : 'Actualizar Publicación'}
                 </Button>
               </Stack>
             </Stack>

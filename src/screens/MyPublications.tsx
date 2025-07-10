@@ -83,18 +83,18 @@ export default function MyPublications() {
   const userId = user?.idUser || ''; // Ya no necesitamos toString() porque es string
 
   // Hook para obtener las publicaciones del usuario - solo si hay userId
-  const { 
-    data, 
-    isLoading, 
-    error, 
+  const {
+    data,
+    isLoading,
+    error,
     refetch,
     fetchNextPage,
     hasNextPage,
-    isFetchingNextPage
+    isFetchingNextPage,
   } = useListPublicationsByUser(userId);
 
   // Aplanar las páginas para obtener todas las publicaciones
-  const publications = data?.pages.flatMap(page => page.publications) || [];
+  const publications = data?.pages.flatMap((page) => page.publications) || [];
 
   // Hooks para las mutaciones
   const pausePublicationMutation = usePausePublication();
@@ -334,7 +334,7 @@ export default function MyPublications() {
 
               {/* Contenido */}
               <CardContent sx={{ flexGrow: 1, pb: 1 }}>
-                {                /* Tipo y marca */}
+                {/* Tipo y marca */}
                 <Stack direction='row' spacing={1} sx={{ mb: 1 }}>
                   <Chip
                     label={publication.type || 'Sin categoría'}
@@ -352,7 +352,7 @@ export default function MyPublications() {
                   )}
                 </Stack>
 
-                {                /* Título del producto */}
+                {/* Título del producto */}
                 <Typography
                   variant='h6'
                   component='h2'
@@ -392,7 +392,7 @@ export default function MyPublications() {
                   </Typography>
                 </Stack>
 
-                {                /* Precio */}
+                {/* Precio */}
                 <Box sx={{ mb: 2 }}>
                   <Typography
                     variant='h5'
@@ -457,13 +457,20 @@ export default function MyPublications() {
                       activatePublicationMutation.isPending
                     }
                     sx={{
-                      color: (publication.isPaused ?? false)
-                        ? 'success.main'
-                        : 'warning.main',
+                      color:
+                        (publication.isPaused ?? false)
+                          ? 'success.main'
+                          : 'warning.main',
                     }}
-                    title={(publication.isPaused ?? false) ? 'Activar' : 'Pausar'}
+                    title={
+                      (publication.isPaused ?? false) ? 'Activar' : 'Pausar'
+                    }
                   >
-                    {(publication.isPaused ?? false) ? <Visibility /> : <VisibilityOff />}
+                    {(publication.isPaused ?? false) ? (
+                      <Visibility />
+                    ) : (
+                      <VisibilityOff />
+                    )}
                   </IconButton>
                   <IconButton
                     size='small'
@@ -516,7 +523,7 @@ export default function MyPublications() {
             Tienes {publications.length} publicación
             {publications.length !== 1 ? 'es' : ''}
           </Typography>
-          
+
           {/* Botón para cargar más */}
           {hasNextPage && (
             <Button

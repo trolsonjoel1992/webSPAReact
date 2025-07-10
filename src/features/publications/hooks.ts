@@ -35,11 +35,11 @@ export const useListPublicationsByUser = (userId: string) => {
         page: pageParam,
         size: 12, // tamaño de página
       });
-      
+
       // Como el backend devuelve directamente un array, lo envolvemos en el formato esperado
       return {
         publications: Array.isArray(data) ? data : [],
-        total: Array.isArray(data) ? data.length : 0
+        total: Array.isArray(data) ? data.length : 0,
       };
     },
     initialPageParam: 1,
