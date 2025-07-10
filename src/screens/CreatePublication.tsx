@@ -19,7 +19,7 @@ import {
   Checkbox,
 } from '@mui/material';
 import { ArrowBack, AttachMoneyOutlined } from '@mui/icons-material';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { CreatePublicationRequest } from '@features/publications/types';
 import { useCreatePublication } from '@features/publications/hooks';
 import { useToast } from '@hooks/useToast';
@@ -42,7 +42,10 @@ const conditions = [
 
 export default function CreatePublication() {
   const navigate = useNavigate();
+  const { id } = useParams();
   const toast = useToast();
+  const isEditing = Boolean(id);
+  
   const [formData, setFormData] = useState<CreatePublicationRequest>({
     title: '',
     description: '',
@@ -108,10 +111,13 @@ export default function CreatePublication() {
           Volver al inicio
         </Button>
         <Typography variant='h4' component='h1' gutterBottom>
-          Vender un producto
+          {isEditing ? 'Editar publicación' : 'Vender un producto'}
         </Typography>
         <Typography variant='body1' color='text.secondary'>
-          Completa la información de tu producto para publicarlo
+          {isEditing 
+            ? 'Modifica la información de tu producto' 
+            : 'Completa la información de tu producto para publicarlo'
+          }
         </Typography>
       </Box>
 
@@ -318,7 +324,10 @@ export default function CreatePublication() {
                     py: 1.5,
                   }}
                 >
-                  {create.isPending ? 'Publicando...' : 'Publicar producto'}
+                  {create.isPending 
+                    ? (isEditing ? 'Actualizando...' : 'Publicando...') 
+                    : (isEditing ? 'Actualizar producto' : 'Publicar producto')
+                  }
                 </Button>
               </Stack>
             </Stack>

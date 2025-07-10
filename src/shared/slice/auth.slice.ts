@@ -3,14 +3,19 @@ import { createSlice, PayloadAction, createSelector } from '@reduxjs/toolkit';
 export type AuthState = {
   token: string | null;
   username: string | null;
-  idUser: number | null;
+  idUser: string | null; // Cambiar de number a string para UUID
   rol: 'ADMIN' | 'PROFESSIONAL' | 'CUSTOMER' | 'DEVELOPER' | null;
 };
 
-export type JwtPayload = AuthState & {
-  sub: string;
+export type JwtPayload = {
+  sub: string; // El email del usuario
+  userId: string; // El ID del usuario (en formato string UUID)
   exp: number;
-  iat: number;
+  iat?: number;
+  iss?: string;
+  // Campos opcionales que podrían venir
+  rol?: 'ADMIN' | 'PROFESSIONAL' | 'CUSTOMER' | 'DEVELOPER';
+  username?: string;
 };
 
 // Claves para localStorage

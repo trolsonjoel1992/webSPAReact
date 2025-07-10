@@ -35,6 +35,14 @@ export type ListPublicationsResponse = {
   publications: Publication[];
 };
 
+export type ListPublicationsByUserRequest = {
+  userId: string;
+  page: number;
+  size: number;
+};
+
+export type ListPublicationsByUserResponse = Publication[];
+
 export type CreatePublicationRequest = {
   title: string;
   description: string;
@@ -50,3 +58,32 @@ export type CreatePublicationRequest = {
 };
 
 export type CreatePublicationResponse = {};
+
+export type ToogleVisibilityRequest = {
+  idPublication: string;
+};
+
+export type ToogleVisibilityResponse = {};
+
+export type DeletePublicationRequest = {
+  idPublication: string;
+};
+
+export type DeletePublicationResponse = {};
+
+export type EditPublicationRequest = {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  city: string;
+  isPremium: boolean;
+  type: string;
+  brand: string;
+  model: string;
+  color: string;
+  condition: 'Excelente' | 'Bueno' | 'Aceptable' | '';
+  compatibility: string;
+};
+
+export type EditPublicationResponse = {};

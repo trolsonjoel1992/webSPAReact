@@ -135,11 +135,8 @@ export default function Home() {
     }
   };
 
-  const getProductImage = (publication: Publication) => {
-    return (
-      publication.images?.[0]?.url ||
-      'https://picsum.photos/400/300?random=' + publication.id
-    );
+  const getProductImage = (i: number) => {
+    return 'https://picsum.photos/400/300?random=' + i;
   };
 
   // const getUserInitials = (userId: string) => {
@@ -199,7 +196,7 @@ export default function Home() {
 
         {/* Mostrar productos reales */}
         {!isLoading &&
-          allPublications.map((publication: Publication) => (
+          allPublications.map((publication: Publication, i) => (
             <Card
               key={publication.id}
               sx={{
@@ -240,7 +237,7 @@ export default function Home() {
               <CardMedia
                 component='img'
                 height='250'
-                image={getProductImage(publication)}
+                image={getProductImage(i)}
                 alt={publication.title}
                 sx={{ objectFit: 'cover' }}
               />
