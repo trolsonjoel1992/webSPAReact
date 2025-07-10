@@ -127,4 +127,4 @@ Ambas aplicaciones comparten las mismas capas de servicios y acceso a datos, gar
 - **Entity Framework Core**: ORM para el acceso a datos.
 - **ASP.NET Core MVC**: Framework web para la interfaz de usuario.
 - **SQL Server**: Base de datos relacional.
-- **PBKDF2 + HMAC-SHA256**: Algoritmos de seguridad para contraseñas.
+
